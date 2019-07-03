@@ -111,9 +111,9 @@ render() {
     return (
       <div>
         <h3>Students</h3>
-        <section>
+        <ul>
           { studentComponents }
-        </section>
+        </ul>
       </div>
     );
   }
