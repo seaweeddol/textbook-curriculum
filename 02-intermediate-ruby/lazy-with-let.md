@@ -72,7 +72,7 @@ If you recall, when using `attr_reader :name`, you pass in a _symbol_ (:name), a
 The **first** time ruby encounters the variable in a test, it will execute the given block to give the variable an initial value.  Subsequently it will function as a regular local variable.
 
 ```ruby
-# pet_test.rb
+# pet_spec.rb
 require 'minitest/autorun'
 require 'minitest/reporters'
 require 'pet'
@@ -102,21 +102,21 @@ In the first example here, when using `before` the statement "Creating a pet nam
 #### Using `before`
 
 ```ruby
-# sample_test.rb
+# sample_spec.rb
 require 'minitest/autorun'
 require 'minitest/reporters'
 require 'pet'
 
 describe "Pet" do
   before do
-    puts "Creating a pet named Ada Lovelace"
+    puts "Creating a pet named Fido"
     @pet = Pet.new("Fido")
   end
 
   describe "initialize method" do
     it "New Pets initialize with a name" do
       expect(@pet).must_respond_to :name
-      expect(@pet.name).must_equal "Ada Lovelace"
+      expect(@pet.name).must_equal "Fido"
     end
 
     it "Throws an ArgumentError if created without a name" do
@@ -130,13 +130,13 @@ end
 Output:
 
 ```bash
-$  ruby test/sample_test.rb
+$  ruby specs/sample_spec.rb
 Run options: --seed 62527
 
 # Running:
 
-Creating a pet named Ada Lovelace
-.Creating a pet named Ada Lovelace
+Creating a pet named Fido
+.Creating a pet named Fido
 .
 
 Finished in 0.011018s, 272.2817 runs/s, 272.2817 assertions/s.
@@ -149,11 +149,11 @@ Finished in 0.011018s, 272.2817 runs/s, 272.2817 assertions/s.
 But if we use let instead the statement is only printed **once** because `pet` is only referenced in one test.
 
 ```ruby
-require_relative "test_helper"
+require_relative "spec_helper"
 
 describe "Pet" do
   let (:pet) {
-    puts "Creating a pet named Ada Lovelace"
+    puts "Creating a pet named Fido"
     Pet.new("Fido")
   }
 
@@ -173,12 +173,12 @@ end
 ```
 
 ```bash
-ruby test/sample_test.rb
+ruby specs/sample_spec.rb
 Run options: --seed 49538
 
 # Running:
 
-Creating a pet named Ada Lovelace
+Creating a pet named fido
 .
 
 Finished in 0.005194s, 770.1194 runs/s, 770.1194 assertions/s.
